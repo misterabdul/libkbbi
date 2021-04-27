@@ -1,27 +1,45 @@
+BIN := libkbbi.so
 TST := test
 
+SRCDIR := src
 TSTDIR := test
 OBJDIR := obj
 BINDIR := bin
 
-CFLAGS := -Wall -Wextra
+CFLAGS := -Wall -Wextra -g
+SFLAGS := -fPIC -shared
+TFLAGS := -ldl
 
+BIN_SRCS := $(shell find $(SRCDIR) -name *.c)
+BIN_OBJS := $(subst $(SRCDIR)/,$(SRCDIR)_,$(BIN_SRCS:%=$(OBJDIR)/%.o))
 TST_SRCS := $(shell find $(TSTDIR) -name *.c)
-TST_OBJS := $(subst test/,test_,$(TST_SRCS:%=$(OBJDIR)/%.o))
+TST_OBJS := $(subst $(TSTDIR)/,$(TSTDIR)_,$(TST_SRCS:%=$(OBJDIR)/%.o))
 
-# Link the main test binary
-$(BINDIR)/$(TST): $(TST_OBJS) $(SQLITE_OBJS)
-	@echo LINK $(TST)
-	@$(CC) $(TST_OBJS) -o $@ $(CFLAGS)
+all: $(BINDIR)/$(BIN)
 
-# Compile each test source code
-$(OBJDIR)/test_%.c.o: $(TSTDIR)/%.c
-	@echo CC $<
-	@$(CC) -c $< -o $@ $(CFLAGS) $(TFLAGS)
+check: $(BINDIR)/$(TST) $(BINDIR)/$(BIN)
+	@./$(BINDIR)/$(TST)
 
 clean:
-	rm -rf $(OBJDIR)/*
-	rm -rf $(BINDIR)/*
+	@$(RM) -r $(OBJDIR)/*
+	@$(RM) -r $(BINDIR)/*
 
-check: $(BINDIR)/$(TST)
-	@./$(BINDIR)/$(TST)
+# Link the main binary
+$(BINDIR)/$(BIN): $(BIN_OBJS)
+	@echo LINK $(BIN)
+	@$(CC) $(BIN_OBJS) -o $@ $(CFLAGS) $(SFLAGS)
+
+# Link the test binary
+$(BINDIR)/$(TST): $(TST_OBJS)
+	@echo LINK $(TST)
+	@$(CC) $(TST_OBJS) -o $@ $(CFLAGS) $(TFLAGS)
+
+# Compile each main source code
+$(OBJDIR)/$(SRCDIR)_%.c.o: $(SRCDIR)/%.c
+	@echo CC $<
+	@$(CC) -c $< -o $@ $(CFLAGS) $(SFLAGS)
+
+# Compile each test source code
+$(OBJDIR)/$(TSTDIR)_%.c.o: $(TSTDIR)/%.c
+	@echo CC $<
+	@$(CC) -c $< -o $@ $(CFLAGS) $(TFLAGS)
