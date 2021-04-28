@@ -12,7 +12,13 @@ init_result();
 extern void
 free_result(Results* result);
 
-extern void
-search(Results** result, const char* query, const int query_size);
+extern int
+search(Results** result,
+       int* result_size,
+       const char* query,
+       const int query_size);
+
+extern int
+count();
 
 #endif
