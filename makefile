@@ -33,9 +33,10 @@ check: $(BINDIR)/$(TST) $(BINDIR)/$(BIN)
 clean:
 	@$(RM) -r $(OBJDIR)/*
 	@$(RM) -r $(BINDIR)/*
+	@$(RM) -r $(SRCDIR)/kbbi_data.h
 
 # Link the main binary
-$(BINDIR)/$(BIN): $(BIN_OBJS)
+$(BINDIR)/$(BIN): $(BIN_INCS) $(BIN_OBJS)
 	@echo LINK $(BIN)
 	@$(CC) $(BIN_OBJS) -o $@ $(CFLAGS) $(SFLAGS)
 
