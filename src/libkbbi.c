@@ -1,15 +1,19 @@
 #include "libkbbi.h"
 
+#include "kbbi_data.h"
+
+#define VERSION "0.0.1"
+
 Results*
 init_result()
 {
-  return kbbi_data_init_result();
+  return (Results*)kbbi_data_init_result();
 }
 
 void
 free_result(Results* results)
 {
-  return kbbi_data_free_result(results);
+  return kbbi_data_free_result((_Results*)results);
 }
 
 int
@@ -18,7 +22,7 @@ search(Results** results,
        const char* query,
        const int query_size)
 {
-  return kbbi_data_search(results, result_size, query, query_size);
+  return kbbi_data_search((_Results**)results, result_size, query, query_size);
 }
 
 int
@@ -28,7 +32,7 @@ count()
 }
 
 char*
-test()
+version()
 {
-  return "Hello from libkbbi.so";
+  return VERSION;
 }
