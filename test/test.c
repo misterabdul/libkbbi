@@ -1,27 +1,11 @@
-#include <dlfcn.h>
+#include <libkbbi/libkbbi.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct results
-{
-  char* katakunci;
-  char* artikata;
-  struct results* next;
-} Results;
-
 int
 main(void)
 {
-  void* libkbbi_so = dlopen("./libkbbi.so", RTLD_LOCAL | RTLD_NOW);
-
-  char* (*version)() = dlsym(libkbbi_so, "version");
-  Results* (*init_result)() = dlsym(libkbbi_so, "init_result");
-  void (*free_result)() = dlsym(libkbbi_so, "free_result");
-  int (*search)(Results**, int*, const char*, const int) =
-    dlsym(libkbbi_so, "search");
-  int (*count)() = dlsym(libkbbi_so, "count");
-
   int total_test = 4;
   int failed_test = 0;
 
@@ -84,6 +68,5 @@ main(void)
     printf("Can\'t load libkbbi.so\n");
   }
 
-  dlclose(libkbbi_so);
   return 0;
 }
