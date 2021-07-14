@@ -36,3 +36,7 @@ $ sudo make install
 $ sudo make uninstall
 
 ```
+
+## Building from released source
+
+Currently not possible because GitHub didn't support the inclusion of submodule directories yet. Clone the source code with git, then checkout to the released tag.
