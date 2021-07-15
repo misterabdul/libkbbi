@@ -1,3 +1,3 @@
 [submodule "deps/kbbi-data-c-source-generator"]
 	path = deps/kbbi-data-c-source-generator
-	url = git@github.com:misterabdul/kbbi-data-c-source-generator.git
+	url = https://github.com/misterabdul/kbbi-data-c-source-generator.git
