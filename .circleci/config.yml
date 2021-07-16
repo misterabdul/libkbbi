@@ -6,11 +6,9 @@ jobs:
       - image: misterabdul/c-build-environment:0.0.1
     steps:
       - checkout
-      - run: pwd
       - run: git submodule update --init --recursive
       - run: ./cpdeps.sh
       - run: mkdir -p build && cd build
-      - run: pwd
       - run: cmake ..
       - run: make && make install
       - persist_to_workspace:
