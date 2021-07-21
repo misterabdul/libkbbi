@@ -27,7 +27,7 @@ jobs:
       - run: |
           cd build
           sudo make install
-          ldconfig
+          sudo ldconfig
           cd test && make
           ./test
 
