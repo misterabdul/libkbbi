@@ -1,5 +1,7 @@
 # LibKBBI
 
+[![CircleCI](https://circleci.com/gh/misterabdul/libkbbi/tree/master.svg?style=svg)](https://circleci.com/gh/misterabdul/libkbbi/tree/master)
+
 KBBI library in C.
 
 Data source taken from [efenfauzi/django_kbbi](https://github.com/efenfauzi/django_kbbi).
