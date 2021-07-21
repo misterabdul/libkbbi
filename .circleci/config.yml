@@ -11,7 +11,7 @@ jobs:
           ./cpdeps.sh
           mkdir -p build
           cd build
-          cmake ..
+          cmake -DCMAKE_INSTALL_PREFIX=/usr ..
           make
       - persist_to_workspace:
           root: .
@@ -26,8 +26,9 @@ jobs:
           at: .
       - run: |
           cd build
-          make install
-          make test
+          sudo make install
+          ldconfig
+          cd test && make
           ./test
 
 workflows:
