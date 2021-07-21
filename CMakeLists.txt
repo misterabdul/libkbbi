@@ -72,3 +72,12 @@ add_custom_target(
 	uninstall
     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/uninstall.cmake
 )
+
+# Set testing build directory
+# (because I still don't know how to properly do unit testing using cmake)
+file(
+	COPY
+	test
+	DESTINATION
+	.
+)
