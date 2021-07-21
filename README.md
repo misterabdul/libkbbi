@@ -6,7 +6,8 @@ Data source taken from [efenfauzi/django_kbbi](https://github.com/efenfauzi/djan
 
 ## Todo
 
-- [ ] Create tests script
+- [x] Create tests script
+- [ ] Unit testing with CMake
 
 ## Building from git
 
