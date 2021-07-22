@@ -28,8 +28,11 @@ jobs:
           cd build
           sudo make install
           sudo ldconfig
+          mkdir -p /tmp/artifacts/test
           cd test && make
-          ./test
+          valgrind --tool=memcheck -s test > /tmp/artifacts/test/valgrind_result.txt
+      - store_artifacts:
+          path: /tmp/artifacts
 
 workflows:
   version: 2
