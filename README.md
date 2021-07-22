@@ -18,7 +18,7 @@ Data source taken from [efenfauzi/django_kbbi](https://github.com/efenfauzi/djan
 $ git submodule update --init --recursive
 
 # Run script to create & copy generated source code
-$ ./cpdeps.sh
+$ ./configure
 
 # Create build directory
 $ mkdir -p build
