@@ -4,3 +4,4 @@ cd deps/kbbi-data-c-source-generator
 make
 cd ../..
 mv deps/kbbi-data-c-source-generator/out/* src/
+sed -i 's/^.*\(#define _KBBI_DATA_HIDE_INTERNALS\).*$/\1/g' src/kbbi_data.h
