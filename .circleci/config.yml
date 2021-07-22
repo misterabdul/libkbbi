@@ -30,7 +30,7 @@ jobs:
           sudo ldconfig
           mkdir -p /tmp/artifacts/test
           cd test && make
-          valgrind --tool=memcheck -s test > /tmp/artifacts/test/valgrind_result.txt
+          valgrind --tool=memcheck --leak-check=full -s --log-file=/tmp/artifacts/test/valgrind_result.txt test || true
       - store_artifacts:
           path: /tmp/artifacts
 
