@@ -4,44 +4,44 @@
 /**
  * The results object data type.
  **/
-typedef struct results
+typedef struct _kbbi_results
 {
   char* katakunci;
   char* artikata;
-  struct results* next;
-} Results;
+  struct _kbbi_results* next;
+} * KBBI_Results;
 
 /**
  * Initialize the results object.
  *
- * @return Results*
+ * @return KBBI_Results
  **/
-extern Results*
-init_result();
+extern KBBI_Results
+KBBI_resultInit();
 
 /**
  * Free the memory of results object.
  *
- * @param  Results* result
+ * @param  KBBI_Results results
  * @return void
  **/
 extern void
-free_result(Results* result);
+KBBI_resultFree(KBBI_Results results);
 
 /**
  * Do searching in KBBI data for given search query.
  *
- * @param  Results** result
+ * @param  KBBI_Results* results
  * @param  int* result_size
  * @param  char* query
  * @param  int query_size
  * @return int
  **/
 extern int
-search(Results** result,
-       int* result_size,
-       const char* query,
-       const int query_size);
+KBBI_search(KBBI_Results* results,
+            int* result_size,
+            const char* query,
+            const int query_size);
 
 /**
  * Count the total words in the KBBI data.
@@ -49,7 +49,7 @@ search(Results** result,
  * @return int
  **/
 extern int
-count();
+KBBI_count();
 
 /**
  * Get the current library version.
@@ -57,6 +57,6 @@ count();
  * @return char*
  **/
 extern char*
-version();
+KBBI_version();
 
 #endif

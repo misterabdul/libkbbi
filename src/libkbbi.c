@@ -4,35 +4,37 @@
 
 #define VERSION "0.0.1"
 
-Results*
-init_result()
+#define KBBI_ATTRIB_VISIBLE __attribute__((visibility("default")))
+
+KBBI_ATTRIB_VISIBLE KBBI_Results
+KBBI_resultInit()
 {
-  return (Results*)kbbi_data_init_result();
+  return (KBBI_Results)kbbi_data_init_result();
 }
 
-void
-free_result(Results* results)
+KBBI_ATTRIB_VISIBLE void
+KBBI_resultFree(KBBI_Results results)
 {
   return kbbi_data_free_result((_Results*)results);
 }
 
-int
-search(Results** results,
-       int* result_size,
-       const char* query,
-       const int query_size)
+KBBI_ATTRIB_VISIBLE int
+KBBI_search(KBBI_Results* results,
+            int* result_size,
+            const char* query,
+            const int query_size)
 {
   return kbbi_data_search((_Results**)results, result_size, query, query_size);
 }
 
-int
-count()
+KBBI_ATTRIB_VISIBLE int
+KBBI_count()
 {
   return kbbi_data_count();
 }
 
-char*
-version()
+KBBI_ATTRIB_VISIBLE char*
+KBBI_version()
 {
   return VERSION;
 }
