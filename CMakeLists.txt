@@ -3,13 +3,13 @@ cmake_minimum_required(VERSION 3.9)
 # Project description
 project(
 	libkbbi
-	VERSION 0.0.1
+	VERSION 1.0.0
 	DESCRIPTION "Library containing KBBI data."
 )
 
 # Custom definitions
 set(LIB_NAME kbbi)
-set(LIB_SO_VERSION 0)
+set(LIB_SO_VERSION 1)
 
 # Set C standard
 set(CMAKE_C_STANDARD 99)
