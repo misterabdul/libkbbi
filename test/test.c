@@ -12,7 +12,7 @@ main(void)
 
   printf("Test 1 of %d : ", total_test);
   const char* check_version = "0.0.1";
-  if (strncmp(version(), check_version, strlen(check_version)) == 0) {
+  if (strncmp(KBBI_version(), check_version, strlen(check_version)) == 0) {
     printf("success\n");
   } else {
     printf("failed\n");
@@ -20,33 +20,33 @@ main(void)
   }
 
   printf("Test 2 of %d : ", total_test);
-  if (count() == 35969) {
+  if (KBBI_count() == 35969) {
     printf("success\n");
   } else {
     printf("failed\n");
     failed_test++;
   }
 
-  Results* result = init_result();
+  KBBI_Results results = KBBI_resultInit();
   int result_count;
 
   printf("Test 3 of %d : ", total_test);
   char* query = "abdullah";
-  if (!search(&result, &result_count, query, strlen(query))) {
+  if (!KBBI_search(&results, &result_count, query, strlen(query))) {
     printf("success\n");
   } else {
     printf("failed\n");
     failed_test++;
   }
 
-  if (result) {
-    free_result(result);
-    result = NULL;
+  if (results) {
+    KBBI_resultFree(results);
+    results = NULL;
   }
 
   printf("Test 4 of %d : ", total_test);
   char* query2 = "abdu";
-  if (search(&result, &result_count, query2, strlen(query2)) &&
+  if (KBBI_search(&results, &result_count, query2, strlen(query2)) &&
       result_count == 4) {
     printf("success\n");
   } else {
@@ -54,9 +54,9 @@ main(void)
     failed_test++;
   }
 
-  if (result) {
-    free_result(result);
-    result = NULL;
+  if (results) {
+    KBBI_resultFree(results);
+    results = NULL;
   }
 
   if(failed_test) {
