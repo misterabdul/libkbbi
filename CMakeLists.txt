@@ -40,6 +40,14 @@ target_include_directories(
 # Use GNU Installation Standard
 include(GNUInstallDirs)
 
+# CMake setup
+if(NOT CMAKE_BUILD_TYPE)
+	set(CMAKE_BUILD_TYPE Release)
+endif()
+set(CMAKE_C_FLAGS "-Wall -Wextra -fvisibility=hidden")
+set(CMAKE_C_FLAGS_DEBUG "-g")
+set(CMAKE_C_FLAGS_RELEASE "-O3")
+
 # Declare file to install
 install(
 	TARGETS ${LIB_NAME}
